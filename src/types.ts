@@ -1,6 +1,6 @@
 import { Atom, WritableAtom, createStore } from 'jotai';
 
-export type AnyWritableAtom<T> = WritableAtom<T, any[], any>;
+export type AnyWritableAtom<T = any> = WritableAtom<T, any[], any>;
 export type AnyAtom<T = any> = Atom<T>;
 export type AtomsToSync<T = any> = [AnyWritableAtom<T>, AnyWritableAtom<T>];
 export type JotaiStore = ReturnType<typeof createStore>;
