@@ -1,0 +1,28 @@
+{
+  "name": "jotai-sync-scope",
+  "version": "1.0.0",
+  "description": "Library for syncing Jotai atoms",
+  "main": "dist/index.js",
+  "scripts": {
+    "cosmos": "cosmos"
+  },
+  "author": "Andrey A. Kiselev",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "jotai": "^2.8.0",
+    "react": "^18.3.1",
+    "react-cosmos": "^6.1.1",
+    "react-cosmos-plugin-vite": "^6.1.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.0"
+  }
+}
