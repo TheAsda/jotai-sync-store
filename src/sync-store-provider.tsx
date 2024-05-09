@@ -1,6 +1,7 @@
 import { Provider, useStore } from 'jotai';
 import { PropsWithChildren, useState } from 'react';
 import { AnyAtom, AnyWritableAtom, AtomsToSync } from './types';
+import { areMapsEqual } from './utils';
 
 export interface SyncScopeProviderProps extends PropsWithChildren {
   atoms: AtomsToSync[];
@@ -11,10 +12,11 @@ export const SyncScopeProvider = (props: SyncScopeProviderProps) => {
 
   const store = useStore();
 
+  const targetsMap = new Map<AnyAtom, AnyAtom>(
+    atoms.map(([sourceAtom, targetAtom]) => [targetAtom, sourceAtom])
+  );
+
   const initialize = () => {
-    const targetsMap = new Map<AnyAtom, AnyAtom>(
-      atoms.map(([sourceAtom, targetAtom]) => [targetAtom, sourceAtom])
-    );
     const atomClones = new WeakMap<AnyAtom, AnyAtom>();
 
     /** Clones atom that handles read/write and translates commands to the original atom */
@@ -80,10 +82,18 @@ export const SyncScopeProvider = (props: SyncScopeProviderProps) => {
       sub: (atom, ...args) => store.sub(getCorrectAtom(atom), ...args),
     };
 
-    return patchedStore;
+    return { originalStore: store, patchedStore, targetsMap };
   };
 
   const [state, setState] = useState(initialize);
 
-  return <Provider store={state}>{children}</Provider>;
+  /** If store changed or provided atoms changed update the state */
+  if (
+    store !== state.originalStore ||
+    !areMapsEqual(state.targetsMap, targetsMap)
+  ) {
+    setState(initialize);
+  }
+
+  return <Provider store={state.patchedStore}>{children}</Provider>;
 };
