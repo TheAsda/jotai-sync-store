@@ -16,7 +16,7 @@ The idea is to sync two Jotai atoms by basically making writing to synced atom t
 # Usage
 
 ```jsx
-import { atom } from 'jotai';
+import { atom, useAtom } from 'jotai';
 import { SyncScopeProvider } from 'jotai-sync-scope';
 
 const sourceAtom = atom(0);
@@ -51,4 +51,42 @@ const Component = () => {
     </>
   );
 };
+```
+
+# Use case
+
+One of the use cases is when you have atom with array of items and you want to provide a way to consume item within scope of some components using `splitAtom` and hook to the item like it's global.
+
+```jsx
+import { atom, useAtom, useAtomValue, atom } from 'jotai';
+import { splitAtom } from 'jotai/utils';
+import { SyncScopeProvider } from 'jotai-sync-scope';
+
+const tabsAtom = atom([]);
+const tabAtomsAtom = splitAtom(tabsAtom);
+
+const App = () => {
+  const tabAtoms = useAtomValue(tabAtomsAtom);
+
+  return (
+    <>
+      {tabAtoms.map((atom) => (
+        <SyncScopeProvider atoms={[[atom, tabAtom]]} key={atom.key}>
+          <Tab />
+        </SyncScopeProvider>
+      ))}
+    </>
+  );
+};
+
+const tabAtom = atom({});
+
+const Tab = () => {
+  const [tab, setTab] = useAtom(tabAtom);
+
+  // You can update tabAtom value as if it's global but it's actually relates to an item from tabsAtom.
+};
+
+// You can even derive some state from tabAtom and use it to access some part of it
+const tabName = atom((get) => get(tabAtom).title);
 ```
