@@ -8,6 +8,7 @@
     "test": "vitest run"
   },
   "author": "Andrey A. Kiselev",
+  "type": "module",
   "license": "ISC",
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.5",
