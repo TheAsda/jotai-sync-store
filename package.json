@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "cosmos": "cosmos",
-    "test": "vitest"
+    "test": "vitest run"
   },
   "author": "Andrey A. Kiselev",
   "license": "ISC",
