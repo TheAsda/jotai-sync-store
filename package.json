@@ -10,6 +10,8 @@
   "author": "Andrey A. Kiselev",
   "license": "ISC",
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.4.5",
+    "@testing-library/react": "^15.0.7",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
@@ -19,6 +21,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "jotai": "^2.8.0",
+    "jsdom": "^24.0.0",
     "react": "^18.3.1",
     "react-cosmos": "^6.1.1",
     "react-cosmos-plugin-vite": "^6.1.1",
