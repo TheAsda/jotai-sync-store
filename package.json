@@ -16,9 +16,6 @@
   "author": "Andrey Kiselev",
   "sideEffects": false,
   "type": "module",
-  "files": [
-    "dist"
-  ],
   "exports": {
     "require": {
       "types": "./dist/index.d.cts",
@@ -32,6 +29,9 @@
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "pkgroll",
     "cosmos": "cosmos",
@@ -58,5 +58,8 @@
   "peerDependencies": {
     "jotai": "^2",
     "react": "^18"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
