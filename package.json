@@ -1,6 +1,6 @@
 {
   "name": "jotai-sync-scope",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "Library for syncing Jotai atoms",
   "keywords": [
     "jotai",
